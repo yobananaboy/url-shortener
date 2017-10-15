@@ -10,44 +10,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Glitch!</title>
-    <meta name="description" content="A cool thing made with Glitch">
+    <title>Matt's url shortener microservice</title>
+    <meta name="description" content="A url shortener made by Matt">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <header>
-      <h1>
-        A Dream of the Future
-      </h1>
-    </header>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-6 info">
+        <header>
+          <h1>
+            URL shortener microservice
+          </h1>
+        </header>
 
-    <main>
-      <p class="bold">Oh hi,</p>
-      <p>Tell me your hopes and dreams:</p>
-      <form>
-        <input type="text" maxlength="100" placeholder="Dreams!">
-        <button type="submit">Submit</button>
-      </form>
-      <section class="dreams">
-        <ul id="dreams">
-        </ul>
-      </section>
-    </main>
+        <main>
+          <h2>
+            How to use
+          </h2>
+          <p>A service for creating short urls. You create short urls by visiting <code>/new/&lt;url&gt;</code>, where <code>&lt;url&gt;</code> is the url of the site you are looking to create a short url for.</p>
+          <p>If you then visit <code>/&lt;shorturl&gt;</code>, where <code>&lt;shorturl&gt;</code> is the short url, you will be sent to the webpage on the database.</p>
+          <h3>
+            Example creation usage
+          </h3>
+          <p>
+            <code>https://matts-url-shortener.glitch.me/new/https://www.google.co.uk/</code>
+          </p>
+          <h3>
+            Example creation output
+          </h3>
+          <p>
+            <code>{"original_url":"https://www.google.com","short_url":3763}</code>
+          </p>
+          <h3>
+            Usage
+          </h3>
+          <p>
+            <code>https://matts-url-shortener.glitch.me/3763</code>
+          </p>
+          <h3>
+            Redirects to
+          </h3>
+          <p>
+            <code>https://www.google.com</code>
+          </p>
+        </main>
 
-    <footer>
-      <a href="https://glitch.com">
-        Remix this in Glitch
-      </a>
-    </footer>
+        <footer>
+          <p>
+            Made by <a href="https://github.com/yobananaboy">Matt Keegan</a>
+          </p>
+        </footer>
+      </div>
+    </div>
+  </div>
 
     <!-- Your web-app is https, so your scripts need to be too -->
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="/client.js"></script>
 
   </body>

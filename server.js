@@ -5,14 +5,17 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
+
 //lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var validator = require('validator');
 var _ = require('underscore');
 var database = ('database');
+
 // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname, details set in .env
 var uri = 'mongodb://'+process.env.USER+':'+process.env.PASS+'@'+process.env.HOST+':'+process.env.DB_PORT+'/'+process.env.DB;
+
 // connect to database
 MongoClient.connect(uri, (err, db) => {
   // handle error connecting to database
@@ -58,20 +61,27 @@ MongoClient.connect(uri, (err, db) => {
         incorrectUrl(res);
       }
   });
+  
+  // error handling
+  app.get('*', (req, res, next) => {
+    var err = new Error();
+    err.status = 404;
+    next(err);
+  });
 
-  /*
-  // for handling people creating new short urls
-  app.get('/new/http://:url', (req, res) => {
-    console.log("spud");
-  // check url, ignoring protocol for now
-    var url = decodeURIComponent(req.params.url);
-    console.log(url);
-    // check if protocol included
+  // handling 404 errors
+  app.use(function(err, req, res, next) {
+    if(err.status !== 404) {
+      return next();
+    }
 
+    res.send(err.message || "Whoops! That page doesn't exist.");
+  });
 
-
-    res.sendFile(__dirname + '/views/index.html');
-  });*/
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
 
   // listen for requests :)
   var listener = app.listen(process.env.PORT, function () {
